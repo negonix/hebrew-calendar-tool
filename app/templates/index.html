@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag()}}
+
+    <div class="">
+        <div class="flex items-center space-x-4 border justify-center my-5 py-5">
+            <p>Align dates by:</p> 
+            {{ form.lang }}
+        </div>
+
+        {% if form.lang.errors %}
+            <ul class="errors">
+            {% for error in form.lang.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-item">
+        <div class="flex items-center space-x-4 border justify-center my-5 py-5">
+            <p>Last Year's Spreadsheet: </p>
+            {{ form.last_years_file }}
+        </div>
+        {% if form.last_years_file.errors %}
+            <ul class="errors">
+            {% for error in form.last_years_file.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div class="form-item">
+        <div class="flex items-center space-x-4 border justify-center my-5 py-5">
+            <p>This Year's Spreadsheet: </p>
+            {{ form.this_years_file }}
+        </div>
+        {% if form.this_years_file.errors %}
+            <ul class="errors">
+            {% for error in form.this_years_file.errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+    <div class="cursor-pointer bg-blue-100 inline-block px-8 py-2 rounded-md">{{form.submit()}}</div>
+</form>
+
+<style>
+    body{
+        text-align: center;
+    }
+    .form-item{
+        margin: 0 auto 1em auto;
+        list-style: none;
+    }
+</style>
+{% endblock content %}

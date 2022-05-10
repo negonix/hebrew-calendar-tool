@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hebrew Calendar Spreadsheet Transfer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="content-container">
+        <p class="text-right" dir="rtl">בס"ד</p>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <style>
+        .content-container{
+            width: 80%;
+            max-width: 750px;
+            margin: 1em auto;
+        }
+    </style>
+</body>
+
+</html>
