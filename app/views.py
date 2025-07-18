@@ -17,21 +17,18 @@ def index():
     form = FileForm()
     if form.validate_on_submit():
         last_years_file = form.last_years_file.data
-        this_years_file = form.this_years_file.data
         lang = form.lang.data
 
-        if last_years_file and allowed_file(last_years_file.filename) and this_years_file and allowed_file(this_years_file.filename):
+        if last_years_file and allowed_file(last_years_file.filename):
+            this_years_file_path = path.join(app.config['UPLOAD_FOLDER'], "5786.xlsx")
             output_directory = path.join(app.config['UPLOAD_FOLDER'], str(uuid.uuid4()).replace('-', ''))
             mkdir(output_directory)
             
             last_years_file_name = secure_filename(last_years_file.filename)
-            this_years_file_name = secure_filename(this_years_file.filename)
 
             last_years_file_path = path.join(output_directory, last_years_file_name)
-            this_years_file_path = path.join(output_directory, this_years_file_name)
 
             last_years_file.save(last_years_file_path)
-            this_years_file.save(this_years_file_path)
 
             excel_return = excel(last_years_file_path, this_years_file_path, lang, output_directory)
             if excel_return == True:

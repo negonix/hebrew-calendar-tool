@@ -32,20 +32,6 @@
         {% endif %}
     </div>
 
-    <div class="form-item">
-        <div class="flex items-center space-x-4 border justify-center my-5 py-5">
-            <p>This Year's Spreadsheet: </p>
-            {{ form.this_years_file }}
-        </div>
-        {% if form.this_years_file.errors %}
-        <ul class="errors">
-            {% for error in form.this_years_file.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </div>
-
     {{form.submit(class_="cursor-pointer bg-blue-100 inline-block px-8 py-2 rounded-md")}}
 </form>
 
@@ -61,7 +47,9 @@
         limit, not enough lines for that date, etc).
     </p>
     <ol class="text-xs pb-4 list-decimal text-left font-bold">
-        <li>Two spreadsheets are required: The previous year's (filled out), and the upcoming year's (blank).</li>
+        <li>Two spreadsheets are required: The previous year's (filled out), and the upcoming year's (blank). The
+            upcoming year's blank spreadsheet has been pre-entered into the program, and the previous year's spreadsheet
+            must be uploaded.</li>
         <li>They must be formatted the same way (same amount of columns, same column names, etc).</li>
         <li>The program will assume that the sheet we are working with (on both years' spreadsheets) is the last page.
             Therefore if there needs to be a page on the spreadsheet with irrelevant data (e.g user instructions) make
