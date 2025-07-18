@@ -8,12 +8,10 @@ def test_col_names_match(old_data, new_data):
     old_column_names = old_data.columns.values.tolist()
     new_column_names = new_data.columns.values.tolist()
 
-    # old_column_names = [col.strip() for col in old_column_names if col.startswith('Unnamed') == False]
-    # new_column_names = [col.strip() for col in new_column_names if col.startswith('Unnamed') == False]
+    stripped_old_column_names = [col.strip().lower() for col in old_column_names]
+    stripped_new_column_names = [col.strip().lower() for col in new_column_names]
     
-    if old_column_names == new_column_names:
-        # print("OLD:", old_column_names)
-        # print("NEW", new_column_names)
+    if stripped_old_column_names == stripped_new_column_names:
         return True
     else:
         print("\nError: column names do not match:\n")
