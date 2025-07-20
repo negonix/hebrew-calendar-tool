@@ -87,22 +87,22 @@ def excel(old_file, new_file, lang, output_directory):
         if type(row[3]) == str:
             if not test_date_exists(row, new_data, lang):
                 extras['dates do not exist'].append(row)
-            
-            elif lang == 'he':
-                matching_line = [idx for (idx, new_row) in enumerate(new_data) if new_row[0].strip() == row[0].strip() and new_row[1] == row[1] and row[2].split('Line')[1].split('(')[0].strip() == new_row[2].split('Line')[1].split('(')[0].strip()]
             else:
-                matching_line = [idx for (idx, new_row) in enumerate(new_data) if new_row[2].strip().replace('-', '') == row[2].strip().replace('-', '')]
-            
-            if not len(matching_line):
-                extras['line not available'].append(row)
-            else:
-                for line in matching_line:
-                    allowed_character_count = int(new_data[line][2].rsplit("(")[1].rsplit(")")[0])
-                    if len(row[3]) > allowed_character_count:
-                        extras['exceeds character limit'].append(row)
-                    else:
-                        new_data[line][3] = row[3]
-                        new_data[line][4] = len(row[3])
+                if lang == 'he':
+                    matching_line = [idx for (idx, new_row) in enumerate(new_data) if new_row[0].strip() == row[0].strip() and new_row[1] == row[1] and row[2].split('Line')[1].split('(')[0].strip() == new_row[2].split('Line')[1].split('(')[0].strip()]
+                else:
+                    matching_line = [idx for (idx, new_row) in enumerate(new_data) if new_row[2].strip().replace('-', '') == row[2].strip().replace('-', '')]
+                
+                if not len(matching_line):
+                    extras['line not available'].append(row)
+                else:
+                    for line in matching_line:
+                        allowed_character_count = int(new_data[line][2].rsplit("(")[1].rsplit(")")[0])
+                        if len(row[3]) > allowed_character_count:
+                            extras['exceeds character limit'].append(row)
+                        else:
+                            new_data[line][3] = row[3]
+                            new_data[line][4] = len(row[3])
 
     new_df = np_to_df(new_sheet=new_sheet, new_data=new_data)
 
