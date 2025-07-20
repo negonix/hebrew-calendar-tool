@@ -73,8 +73,8 @@ def excel(old_file, new_file, lang, output_directory):
     old_data = remove_unnamed_columns(pd.DataFrame(old_sheet))
     new_data = remove_unnamed_columns(pd.DataFrame(new_sheet))
 
-    if not test_col_names_match(old_data, new_data):
-        return "Error: Column names do not match!"
+    # if not test_col_names_match(old_data, new_data):
+    #     return "Error: Column names do not match!"
 
 #      0         1                            3                          4                      5
 # ['Hebrew', ' Date', 'Unnamed: 2',    'Date and Line ',              'Text',          'Character Count']
